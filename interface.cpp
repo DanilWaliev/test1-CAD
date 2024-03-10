@@ -42,7 +42,34 @@ int GetInt(std::string promptMessage, std::string errorMessage)
     }
 }
 
-double GetDouble(void)
+double GetDouble(std::string promptMessage, std::string errorMessage)
 {
-    return 0.;
+    std::string str;
+    bool isNum = true;
+
+    while (true)
+    {
+        std::cout << promptMessage << std::endl;
+        std::cin >> str;
+
+        // посимвольная проверка полученной строки на цифры
+        isNum = true;
+        for (const char ch : str)
+        {
+            if (!isdigit(ch) && ch != '.')
+            {
+                isNum = false;
+                break;
+            }
+        }
+
+        if (isNum)
+        {
+            while (getchar() != '\n');
+            return std::stod(str);
+        }
+
+        while (getchar() != '\n');
+        std::cout << errorMessage << std::endl;
+    }
 }

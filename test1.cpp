@@ -11,8 +11,8 @@ int main()
 
     //testInput();
 
-    int a = 0;
-    a = GetInt();
+    double a = 0;
+    a = GetDouble();
 
     std::cout << "Введенное число: " << a << std::endl;
 }
