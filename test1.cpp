@@ -1,13 +1,20 @@
 ﻿#include <iostream>
 #include <string>
 #include "employee.h"
+#include "Interface.h"
 
 int main()
 {
-    std::vector<Employee> myCompany = Employee::MakeCompany(10);
+    setlocale(LC_CTYPE, "Russian");
+   
+    ShowInfo();
 
-    std::cout << myCompany[3].GetName() << std::endl;
+    //testInput();
 
+    int a = 0;
+    a = GetInt();
+
+    std::cout << "Введенное число: " << a << std::endl;
 }
 
 
