@@ -1,5 +1,6 @@
 #include "Interface.h"
 
+// выводит в консоль информацию по заданию
 void ShowInfo(void)
 {
     std::cout << "/*******************************************\\" << std::endl;
@@ -8,30 +9,32 @@ void ShowInfo(void)
     std::cout << "| Задание: разработать класс для указанной  |" << std::endl;
     std::cout << "| предметной области                        |" << std::endl;
     std::cout << "\\*******************************************/" << std::endl;
+    std::cout << std::endl;
 }
 
+// выводит пункты меню в консоль
+void ShowMenu(void)
+{
+    std::cout << "1 - Ввести данные через файл" << std::endl;
+    std::cout << "2 - Ввести данные через консоль" << std::endl;
+    std::cout << "0 - Завершить работу программы" << std::endl;
+    std::cout << std::endl;
+}
+
+// получает целочисленное значение с консоли
+// предлагает ввести пользователю значение до тех пор, пока значени не окажется корректным
+// promptMessage - приглашение к вводу (по умолчанию = "Введите целочисленное значение: ")
+// errorMessage - сообщение об ошибке считывания числа (по умолчанию = "Некорректный ввод: ")
 int GetInt(std::string promptMessage, std::string errorMessage)
 {
     std::string str;
-    bool isNum = true;
 
     while (true)
     {
         std::cout << promptMessage << std::endl;
         std::cin >> str;
 
-        // посимвольная проверка полученной строки на цифры
-        isNum = true;
-        for (const char ch : str)
-        {
-            if (!isdigit(ch))
-            {
-                isNum = false;
-                break;
-            }
-        }
-
-        if (isNum)
+        if (IsNumber(str))
         {
             while (getchar() != '\n');
             return std::stoi(str);
@@ -39,31 +42,24 @@ int GetInt(std::string promptMessage, std::string errorMessage)
 
         while (getchar() != '\n');
         std::cout << errorMessage << std::endl;
+        std::cout << std::endl;
     }
 }
 
+// получает число с плавающей точкой с консоли
+// предлагает ввести пользователю значение до тех пор, пока значени не окажется корректным
+// promptMessage - приглашение к вводу (по умолчанию = "Введите целочисленное значение: ")
+// errorMessage - сообщение об ошибке считывания числа (по умолчанию = "Некорректный ввод: ")
 double GetDouble(std::string promptMessage, std::string errorMessage)
 {
     std::string str;
-    bool isNum = true;
 
     while (true)
     {
         std::cout << promptMessage << std::endl;
         std::cin >> str;
 
-        // посимвольная проверка полученной строки на цифры
-        isNum = true;
-        for (const char ch : str)
-        {
-            if (!isdigit(ch) && ch != '.')
-            {
-                isNum = false;
-                break;
-            }
-        }
-
-        if (isNum)
+        if (IsNumber(str))
         {
             while (getchar() != '\n');
             return std::stod(str);
@@ -73,3 +69,19 @@ double GetDouble(std::string promptMessage, std::string errorMessage)
         std::cout << errorMessage << std::endl;
     }
 }
+
+//void ReadFile(std::string source)
+//{
+//    std::string str;
+//
+//    std::ifstream in(source);
+//
+//    while (std::getline(in, str))
+//    {
+//        
+//    }
+//
+//    in.close();
+//
+//}
+
