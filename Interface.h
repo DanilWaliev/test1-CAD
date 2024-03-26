@@ -15,5 +15,3 @@ int GetInt(std::string promptMessage = "Введите целочисленное значение: ",
 
 double GetDouble(std::string promptMessage = "Введите число: ",
     std::string errorMessage = "Некорректный ввод!");
-
-void ReadFile(std::string source);

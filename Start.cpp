@@ -10,6 +10,9 @@ int main()
 {
     setlocale(LC_CTYPE, "Russian");
 
+    Employee danil("Danil Valiev Lenarovich 2025");
+
+
     ShowInfo();
 
     Menu menuChoice;
@@ -24,6 +27,8 @@ int main()
         {
         case Menu::ConsoleInput:
             std::cout << "ввод с консоли" << std::endl;
+
+            danil.ShowInfo();
 
             break;
         case Menu::FileInput:
