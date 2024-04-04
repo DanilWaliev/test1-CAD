@@ -22,29 +22,19 @@ Employee::Employee(std::string name, std::string surname, std::string patronymic
     this->salary = salary;
 }
 
-Employee::Employee(void)
-{
-    name = "Undefined";
-    surname = "Undefined";
-    patronymic = "Undefined";
-    position = "Undefined";
-    entryYear = 0;
-    salary = 0.0;
-}
-
 Employee::Employee(std::string inputString)
 {
-    // парсинг исходной строки в вектор строк
-    std::vector<std::string> parsed;
+    // разбиение исходной строки в вектор строк
+    std::vector<std::string> splitted;
     std::stringstream stringStream(inputString);
-    std::string tempString{};
+    std::string tempString;
 
     while (stringStream >> tempString)
     {
-        parsed.push_back(tempString);
+        splitted.push_back(tempString);
     }
 
-    if (parsed.size() < 5)
+    if (splitted.size() < 6)
     {
         throw std::string("Недостаточно данных о пользователе");
     }
@@ -52,57 +42,67 @@ Employee::Employee(std::string inputString)
     // заполнение объекта employee строками из вектора
     try
     {
-        SetName(parsed.at(0));
+        SetName(splitted.at(0));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
 
     try
     {
-        SetSurname(parsed.at(1));
+        SetSurname(splitted.at(1));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
 
     try
     {
-        SetPatronymic(parsed.at(2));
+        SetPatronymic(splitted.at(2));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
 
     try
     {
-        SetPosition(parsed.at(3));
+        SetPosition(splitted.at(3));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
 
     try
     {
-        SetEntryYear(parsed.at(4));
+        SetEntryYear(splitted.at(4));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
 
     try
     {
-        SetSalary(parsed.at(5));
+        SetSalary(splitted.at(5));
     }
     catch (std::string errorMessage)
     {
-        std::cout << errorMessage << std::endl;
+        throw errorMessage;
     }
+}
+
+Employee::Employee()
+{
+    this->name = "Undefined";
+    this->surname = "Undefined";
+    this->patronymic = "Undefined";
+    this->position = "Undefined";
+    this->entryYear = 0;
+    this->salary = 0.0;
 }
 
 // выводит информацию о работнике
@@ -116,77 +116,77 @@ void Employee::ShowInfo()
     std::cout << "Зарплата: " << salary << std::endl;
 }
 
-void Employee::SetName(std::string name)
+void Employee::SetName(std::string inputName)
 {
-    if (IsWord(name))
+    if (IsWord(inputName))
     {
-        this->name = name;
+        name = inputName;
         return;
     }
 
     throw std::string("Некорректное имя");
 }
 
-void Employee::SetSurname(std::string surname)
+void Employee::SetSurname(std::string inputSurname)
 {
-    if (IsWord(surname))
+    if (IsWord(inputSurname))
     {
-        this->surname = surname;
+        surname = inputSurname;
         return;
     }
 
     throw std::string("Некорректная фамилия");
 }
 
-void Employee::SetPatronymic(std::string patronymic)
+void Employee::SetPatronymic(std::string inputPatronymic)
 {
-    if (IsWord(patronymic))
+    if (IsWord(inputPatronymic))
     {
-        this->patronymic = patronymic;
+        patronymic = inputPatronymic;
         return;
     }
 
     throw std::string("Некорректное отчество");
 }
 
-void Employee::SetPosition(std::string position)
+void Employee::SetPosition(std::string inputPosition)
 {
-    if (IsWord(position))
+    if (IsWord(inputPosition))
     {
-        this->position = position;
+        position = inputPosition;
         return;
     }
 
     throw std::string("Некорректная должность");
 }
 
-void Employee::SetEntryYear(int entryYear)
+void Employee::SetEntryYear(int inputEntryYear)
 {
     // добавить логику ввода года принятия на работу
-    this->entryYear = entryYear;
+    entryYear = inputEntryYear;
 }
 
-void Employee::SetEntryYear(std::string entryYear)
+void Employee::SetEntryYear(std::string inputEntryYear)
 {
-    if (IsNumber(entryYear))
+    if (IsNumber(inputEntryYear))
     {
-        SetEntryYear(std::stoi(entryYear));
+        SetEntryYear(std::stoi(inputEntryYear));
         return;
     }
     throw std::string("Некорректный год");
 }
 
-void Employee::SetSalary(double salary)
+void Employee::SetSalary(double inputSalary)
 {
     // добавить логику ввода зарплаты
-    this->salary = salary;
+    salary = inputSalary;
 }
 
-void Employee::SetSalary(std::string salary)
+void Employee::SetSalary(std::string inputSalary)
 {
-    if (IsNumber(salary))
+    if (IsNumber(inputSalary))
     {
-        SetSalary(std::stod(salary));
+        SetSalary(std::stod(inputSalary));
         return;
     }
 

@@ -11,19 +11,19 @@
 class Employee
 {
 private:
-    std::string name;
-    std::string surname;
-    std::string patronymic;
-    std::string position;
-    int entryYear;
-    double salary;
+    std::string name = "Undefined";
+    std::string surname = "Undefined";
+    std::string patronymic = "Undefined";
+    std::string position = "Undefined";
+    int entryYear = 0;
+    double salary = 0.0;
 public:
     Employee(std::string name, std::string surname, std::string patronymic,
         std::string position, int entryYear, double salary);
 
     Employee(std::string inputString);
 
-    Employee(void);
+    Employee();
 
     void ShowInfo();
 

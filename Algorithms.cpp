@@ -3,10 +3,11 @@
 // проверяет содержит ли строка только буквы
 bool IsWord(std::string str)
 {
+    std::locale loc("Russian");
     bool isWord = true;
     for (const char ch : str)
     {
-        if (!isalpha(ch))
+        if (!std::isalpha(ch, loc))
         {
             isWord = false;
             break;
