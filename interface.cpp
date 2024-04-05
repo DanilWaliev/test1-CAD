@@ -31,13 +31,14 @@ int GetInt(std::string promptMessage, std::string errorMessage)
 
     while (true)
     {
-        std::cout << promptMessage << std::endl;
+        std::cout << promptMessage;
         std::cin >> str;
 
         if (IsNumber(str))
         {
             while (getchar() != '\n');
             return std::stoi(str);
+            std::cout << std::endl;
         }
 
         while (getchar() != '\n');
@@ -56,32 +57,19 @@ double GetDouble(std::string promptMessage, std::string errorMessage)
 
     while (true)
     {
-        std::cout << promptMessage << std::endl;
+        std::cout << promptMessage;
         std::cin >> str;
 
         if (IsNumber(str))
         {
             while (getchar() != '\n');
+            std::cout << std::endl;
             return std::stod(str);
         }
 
         while (getchar() != '\n');
         std::cout << errorMessage << std::endl;
+        std::cout << std::endl;
     }
 }
-
-//void ReadFile(std::string source)
-//{
-//    std::string str;
-//
-//    std::ifstream in(source);
-//
-//    while (std::getline(in, str))
-//    {
-//        
-//    }
-//
-//    in.close();
-//
-//}
 

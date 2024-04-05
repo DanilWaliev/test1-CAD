@@ -6,7 +6,17 @@
 #include "MyFunctions.h"
 #include "Algorithms.h"
 
-enum class Menu { Exit, FileInput, ConsoleInput };
+enum class Menu 
+{   
+    Exit,
+    FileInput,
+    ConsoleInput,
+    SaveAsFile, 
+    ShowData, 
+    FilterByWorkExperience, 
+    FilterBySalary,
+    FilterByPosition
+};
 
 int main()
 {
@@ -29,13 +39,11 @@ int main()
         switch (menuChoice)
         {
         case Menu::ConsoleInput:
-            std::cout << "ввод с консоли" << std::endl;
-
             ConsoleInput(myCompany);
 
             break;
         case Menu::FileInput:
-            std::cout << "ввод файлом" << std::endl;
+            FileInput(myCompany, "input.txt");
 
             break;
         case Menu::Exit:
