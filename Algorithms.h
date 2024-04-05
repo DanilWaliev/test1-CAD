@@ -1,8 +1,7 @@
 #pragma once
 
-#include <string>
-#include <locale>
+#include "Employee.h"
+#include "MyFunctions.h"
+#include "Interface.h"
 
-bool IsWord(std::string str);
-
-bool IsNumber(std::string str);
+void ConsoleInput(std::vector<Employee>& company);

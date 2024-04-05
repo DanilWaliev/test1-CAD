@@ -1,34 +1,48 @@
 #include "Algorithms.h"
 
-// проверяет содержит ли строка только буквы
-bool IsWord(std::string str)
+// need to finish !!!!!
+void FileInput(std::vector<Employee> &company)
 {
-    std::locale loc("Russian");
-    bool isWord = true;
-    for (const char ch : str)
-    {
-        if (!std::isalpha(ch, loc))
-        {
-            isWord = false;
-            break;
-        }
-    }
+    std::string inputString;
 
-    return isWord;
+    while (true)
+    {
+        getline(std::cin, inputString);
+        std::cout << inputString << std::endl;
+
+        if (inputString == "0") break;
+
+        try
+        {
+            company.push_back(Employee(inputString));
+        }
+        catch (std::string errorMessage)
+        {
+            std::cout << errorMessage << std::endl;
+        }
+
+    }
 }
 
-// проверяет является ли строка десятичным числом
-bool IsNumber(std::string str)
+void ConsoleInput(std::vector<Employee> &company)
 {
-    bool isNumber = true;
-    for (const char ch : str)
-    {
-        if (!isdigit(ch) && ch != '-' && ch != '.')
-        {
-            isNumber = false;
-            break;
-        }
-    }
+    std::string inputString;
 
-    return isNumber;
+    while (true)
+    {
+        getline(std::cin, inputString);
+
+        if (inputString == "0") break;
+
+        try
+        {
+            company.push_back(Employee(inputString));
+        }
+        catch (std::string errorMessage)
+        {
+            std::cout << errorMessage << std::endl;
+        }
+
+    }
 }
+

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "Algorithms.h"
+#include "MyFunctions.h"
 
 // класс сотрудника
 class Employee
