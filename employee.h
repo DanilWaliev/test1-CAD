@@ -45,6 +45,12 @@ public:
 
     std::string GetName(void);
 
+    std::string GetSurname(void);
+
+    std::string GetPatronymic(void);
+
+    std::string GetPosition(void);
+
     int GetEntryYear(void);
 
     double GetSalary(void);

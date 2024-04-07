@@ -11,8 +11,8 @@ enum class Menu
     Exit,
     FileInput,
     ConsoleInput,
-    SaveAsFile, 
-    ShowData, 
+    ShowData,
+    SaveAsFile,  
     FilterByWorkExperience, 
     FilterBySalary,
     FilterByPosition
@@ -35,16 +35,18 @@ int main()
     {
         ShowMenu();
         menuChoice = static_cast<Menu>(GetInt("Введите пункт меню: "));
+        std::cout << std::endl;
 
         switch (menuChoice)
         {
         case Menu::ConsoleInput:
             ConsoleInput(myCompany);
-
             break;
         case Menu::FileInput:
-            FileInput(myCompany, "input.txt");
-
+            FileInput(myCompany);
+            break;
+        case Menu::ShowData:
+            ShowData(myCompany);
             break;
         case Menu::Exit:
             return EXIT_SUCCESS;

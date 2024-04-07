@@ -198,6 +198,21 @@ std::string Employee::GetName(void)
     return name;
 }
 
+std::string Employee::GetSurname(void)
+{
+    return surname;
+}
+
+std::string Employee::GetPatronymic(void)
+{
+    return patronymic;
+}
+
+std::string Employee::GetPosition(void)
+{
+    return position;
+}
+
 int Employee::GetEntryYear(void)
 {
     return entryYear;
