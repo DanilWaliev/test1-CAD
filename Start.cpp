@@ -12,6 +12,7 @@ enum class Menu
     FileInput,
     ConsoleInput,
     ShowData,
+    ClearData,
     SaveAsFile,  
     FilterByWorkExperience, 
     FilterBySalary,
@@ -27,15 +28,13 @@ int main()
     std::string inputString;
 
     ShowInfo();
+    ShowMenu();
 
     Menu menuChoice;
 
-
     do
     {
-        ShowMenu();
         menuChoice = static_cast<Menu>(GetInt("Введите пункт меню: "));
-        std::cout << std::endl;
 
         switch (menuChoice)
         {
@@ -46,13 +45,30 @@ int main()
             FileInput(myCompany);
             break;
         case Menu::ShowData:
-            ShowData(myCompany);
+            PrintTable(myCompany, std::cout);
+            break;
+        case Menu::ClearData:
+            ClearData(myCompany);
+            break;
+        case Menu::SaveAsFile:
+            SaveAsFile(myCompany);
+            break;
+        case Menu::FilterByWorkExperience:
+            FilterByWorkExperience(myCompany);
+            break;
+        case Menu::FilterBySalary:
+            FilterBySalary(myCompany);
+            break;
+        case Menu::FilterByPosition:
+            FilterByPosition(myCompany);
             break;
         case Menu::Exit:
             return EXIT_SUCCESS;
             break;
         default:
             std::cout << "Такого пункта в меню нет" << std::endl;
+            std::cin >> inputString;
+            std::cout << ToLowerCase(inputString) << std::endl;
         }
 
     } while (menuChoice != Menu::Exit);

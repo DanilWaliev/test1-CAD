@@ -1,4 +1,4 @@
-#include "Algorithms.h"
+#include "MyFunctions.h"
 
 // проверяет содержит ли строка только буквы
 bool IsWord(std::string str)
@@ -7,7 +7,7 @@ bool IsWord(std::string str)
     bool isWord = true;
     for (const char ch : str)
     {
-        if (!std::isalpha(ch, loc))
+        if (!std::isalpha(ch, loc) && ch != '-')
         {
             isWord = false;
             break;
@@ -31,4 +31,20 @@ bool IsNumber(std::string str)
     }
 
     return isNumber;
+}
+
+// приведение каждого символа строки str к нижнему регистру
+std::string ToLowerCase(std::string str)
+{
+    std::locale loc("Russian");
+    for (int i = 0; i < str.size(); i++) str[i] = std::tolower(str[i], loc);
+    return str;
+}
+
+// приведение каждого символа строки str к верхнему регистру
+std::string ToLowerCase(std::string str)
+{
+    std::locale loc("Russian");
+    for (int i = 0; i < str.size(); i++) str[i] = std::toupper(str[i], loc);
+    return str;
 }

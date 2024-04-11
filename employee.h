@@ -56,7 +56,3 @@ public:
     double GetSalary(void);
 };
 
-//Employee StringToEmployee(std::string inputString);
-
-std::vector<Employee> MakeCompany(size_t size);
-
