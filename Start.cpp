@@ -19,6 +19,15 @@ enum class Menu
     FilterByPosition
 };
 
+enum class MainMenuOptions
+{
+    Exit,
+    Input,
+    Output,
+    Clear,
+    Filter
+};
+
 int main()
 {
     SetConsoleCP(1251);
@@ -28,11 +37,11 @@ int main()
     std::string inputString;
 
     ShowInfo();
-    ShowMenu();
+    /*ShowMenu();
 
     Menu menuChoice;
 
-    do
+    while (true)
     {
         menuChoice = static_cast<Menu>(GetInt("Введите пункт меню: "));
 
@@ -67,11 +76,39 @@ int main()
             break;
         default:
             std::cout << "Такого пункта в меню нет" << std::endl;
-            std::cin >> inputString;
-            std::cout << ToLowerCase(inputString) << std::endl;
         }
+    }*/
 
-    } while (menuChoice != Menu::Exit);
+
+    MainMenuOptions mainMenuChoice;
+
+    while (true)
+    {
+        ShowMainMenu();
+
+        mainMenuChoice = static_cast<MainMenuOptions>(GetInt("Введите пункт меню: "));
+
+        switch (mainMenuChoice)
+        {
+        case MainMenuOptions::Input:
+            Input(myCompany);
+            break;
+        case MainMenuOptions::Output:
+            Output(myCompany);
+            break;
+        case MainMenuOptions::Clear:
+            ClearData(myCompany);
+            break;
+        case MainMenuOptions::Filter:
+            Filter(myCompany);
+            break;
+        case MainMenuOptions::Exit:
+            return EXIT_SUCCESS;
+            break;
+        default:
+            std::cout << "Такого пункта в меню нет" << std::endl;
+        }
+    }
 }
 
 

@@ -1,10 +1,30 @@
 #include "Algorithms.h"
 
+enum class InputMenuOptions
+{
+    MainMenu,
+    Console,
+    File
+};
+
+enum class OutputMenuOptions
+{
+    MainMenu,
+    Console,
+    File
+};
+
+enum class FilterMenuOptions
+{
+    MainMenu,
+    ByWorkExperience,
+    BySalary,
+    ByPosition
+};
+
 // добавляет в вектор company сотрудников, полученных с файла указанным пользователем
 void FileInput(std::vector<Employee>& company)
 {
-    bool stop;
-
     size_t was = company.size();
     int counter = 0;
     std::string inputString;
@@ -63,7 +83,11 @@ void ConsoleInput(std::vector<Employee>& company)
     {
         getline(std::cin, inputString);
 
-        if (inputString == "0") break;
+        if (inputString == "0")
+        {
+            std::cout << std::endl;
+            return;
+        }
 
         try
         {
@@ -240,7 +264,7 @@ void FilterByWorkExperience(std::vector<Employee>& company)
 {
     if (company.size() == 0)
     {
-        std::cout << "Недостаточно данных" << std::endl;
+        std::cout << "Недостаточно данных" << std::endl << std::endl;
         return;
     }
 
@@ -284,7 +308,7 @@ void FilterBySalary(std::vector<Employee>& company)
 {
     if (company.size() == 0)
     {
-        std::cout << "Недостаточно данных" << std::endl;
+        std::cout << "Недостаточно данных" << std::endl << std::endl;
         return;
     }
 
@@ -328,7 +352,7 @@ void FilterByPosition(std::vector<Employee>& company)
 {
     if (company.size() == 0)
     {
-        std::cout << "Недостаточно данных" << std::endl;
+        std::cout << "Недостаточно данных" << std::endl << std::endl;
         return;
     }
 
@@ -364,5 +388,88 @@ void FilterByPosition(std::vector<Employee>& company)
             company,
             filtred,
             "Cотрудники, занимающие должность " + positionFilter);
+    }
+}
+
+void Input(std::vector<Employee>& company)
+{
+    InputMenuOptions inputMenuChoice;
+
+    while (true)
+    {
+        ShowInputMenu();
+        inputMenuChoice = static_cast<InputMenuOptions>(GetInt("Введите способ ввода: "));
+
+        switch (inputMenuChoice)
+        {
+        case InputMenuOptions::Console:
+            ConsoleInput(company);
+            break;
+        case InputMenuOptions::File:
+            FileInput(company);
+            break;
+        case InputMenuOptions::MainMenu:
+            return;
+            break;
+        default:
+            std::cout << "Такого пункта в меню нет" << std::endl << std::endl;
+        }
+    }
+}
+
+void Output(std::vector<Employee>& company)
+{
+    OutputMenuOptions outputMenuChoice;
+
+    while (true)
+    {
+        ShowOutputMenu();
+
+        outputMenuChoice = static_cast<OutputMenuOptions>(GetInt("Введите способ ввода: "));
+
+        switch (outputMenuChoice)
+        {
+        case OutputMenuOptions::Console:
+            PrintTable(company, std::cout);
+            break;
+        case OutputMenuOptions::File:
+            SaveAsFile(company);
+            break;
+        case OutputMenuOptions::MainMenu:
+            return;
+            break;
+        default:
+            std::cout << "Такого пункта в меню нет" << std::endl << std::endl;
+        }
+    }
+}
+
+void Filter(std::vector<Employee>& company)
+{
+    FilterMenuOptions filterMenuChoice;
+
+    while (true)
+    {
+        ShowFilterMenu();
+
+        filterMenuChoice = static_cast<FilterMenuOptions>(GetInt("Введите какой фильтр применить: "));
+
+        switch (filterMenuChoice)
+        {
+        case FilterMenuOptions::ByWorkExperience:
+            FilterByWorkExperience(company);
+            break;
+        case FilterMenuOptions::BySalary:
+            FilterBySalary(company);
+            break;
+        case FilterMenuOptions::ByPosition:
+            FilterByPosition(company);
+            break;
+        case FilterMenuOptions::MainMenu:
+            return;
+            break;
+        default:
+            std::cout << "Такого пункта в меню нет" << std::endl << std::endl;
+        }
     }
 }

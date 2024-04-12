@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iomanip>
+#include <conio.h>
 #include "Employee.h"
 #include "MyFunctions.h"
 #include "Interface.h"
@@ -20,3 +21,9 @@ void FilterByWorkExperience(std::vector<Employee>& company);
 void FilterBySalary(std::vector<Employee>& company);
 
  void FilterByPosition(std::vector<Employee>& company);
+
+ void Input(std::vector<Employee>& company);
+
+ void Output(std::vector<Employee>& company);
+
+ void Filter(std::vector<Employee>& company);
