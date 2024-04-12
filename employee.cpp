@@ -1,16 +1,5 @@
 #include "Employee.h"
 
-// создает вектор экземл€ров класса Employee 
-std::vector<Employee> MakeCompany(size_t size) {
-    std::vector<Employee> company(size);
-    for (auto i = company.begin(); i != company.end(); i++)
-    {
-        *i = Employee();
-    }
-
-    return company;
-}
-
 Employee::Employee(std::string name, std::string surname, std::string patronymic,
     std::string position, int entryYear, double salary)
 {
@@ -97,12 +86,12 @@ Employee::Employee(std::string inputString)
 
 Employee::Employee()
 {
-    this->name = "Undefined";
-    this->surname = "Undefined";
-    this->patronymic = "Undefined";
-    this->position = "Undefined";
-    this->entryYear = 0;
-    this->salary = 0.0;
+    name = "Undefined";
+    surname = "Undefined";
+    patronymic = "Undefined";
+    position = "Undefined";
+    entryYear = 0;
+    salary = 0.0;
 }
 
 // выводит информацию о работнике

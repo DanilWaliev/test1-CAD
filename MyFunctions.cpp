@@ -42,7 +42,7 @@ std::string ToLowerCase(std::string str)
 }
 
 // приведение каждого символа строки str к верхнему регистру
-std::string ToLowerCase(std::string str)
+std::string ToUpperCase(std::string str)
 {
     std::locale loc("Russian");
     for (int i = 0; i < str.size(); i++) str[i] = std::toupper(str[i], loc);

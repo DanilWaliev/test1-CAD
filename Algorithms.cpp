@@ -3,39 +3,51 @@
 // добавляет в вектор company сотрудников, полученных с файла указанным пользователем
 void FileInput(std::vector<Employee>& company)
 {
+    bool stop;
+
     size_t was = company.size();
     int counter = 0;
     std::string inputString;
     std::string source;
-    
-    std::cout << "Введите название файла: ";
-    std::cin >> source;
 
-    std::ifstream in(source);
-
-    while (getline(in, inputString))
+    while (true)
     {
-        counter++;
+        std::cout << "Введите название файла, 0 чтобы завершить ввод ";
+        std::cin >> source;
 
-        try
+        // при вводе пользователем 0 выполнение функции завершается
+        if (source == "0")
         {
-            company.push_back(Employee(inputString));
-        }
-        catch (std::string errorMessage)
-        {
-            std::cout << errorMessage << std::endl;
+            std::cout << std::endl;
+            return;
         }
 
+        std::ifstream in(source);
+
+        while (getline(in, inputString))
+        {
+            counter++;
+
+            try
+            {
+                company.push_back(Employee(inputString));
+            }
+            catch (std::string errorMessage)
+            {
+                std::cout << errorMessage << std::endl;
+            }
+
+        }
+        in.close();
+
+        std::cout << "Считано "
+            << counter
+            << " строк, добавлено "
+            << company.size() - was
+            << " сотрудников"
+            << std::endl
+            << std::endl;
     }
-    in.close();
-
-    std::cout << "Считано " 
-        << counter 
-        << " строк, добавлено " 
-        << company.size() - was 
-        << " сотрудников" 
-        << std::endl 
-        << std::endl;
 }
 
 // считывает строку с консоли и добавляет сотрудника в вектор company
@@ -43,7 +55,7 @@ void ConsoleInput(std::vector<Employee>& company)
 {
     std::cout << "Введите данные о сотрудникев через пробел в формате: "
     << "Имя Фамилия Отчество Должность Год(принятия на работу) Зарплата" << std::endl
-    << "0 - Закончить ввод с консоли" << std::endl;
+    << "0, чтобы завершить ввод" << std::endl;
 
     std::string inputString;
 
@@ -122,8 +134,15 @@ void SaveAsFile(std::vector<Employee>& company)
 
     while (true)
     {
-        std::cout << "Введите название файла: ";
+        std::cout << "Введите название файла, 0 чтобы завершить сохранение в файл: ";
         std::cin >> fileName;
+
+        // при вводе пользователем 0 выполнение функции завершается
+        if (fileName == "0")
+        {
+            std::cout << std::endl;
+            return;
+        }
 
         // проверка файла на существование или только для чтения
         std::ifstream check(fileName);
@@ -170,8 +189,15 @@ void SaveFiltredDataAsFile(
 
     while (true)
     {
-        std::cout << "Введите название файла: ";
+        std::cout << "Введите название файла, 0 чтобы завершить сохранение в файл: ";
         std::cin >> fileName;
+
+        // при вводе пользователем 0 выполнение функции завершается
+        if (fileName == "0")
+        {
+            std::cout << std::endl;
+            return;
+        }
 
         // проверка файла на существование или только для чтения
         std::ifstream check(fileName);
@@ -309,7 +335,7 @@ void FilterByPosition(std::vector<Employee>& company)
     // вектор в котором будут храниться отфильтрованные сотрудники
     std::vector<Employee> filtred;
 
-    std::string positionFilter = GetWord("Введите должность по которой филтровать сотрудников: ");
+    std::string positionFilter = GetWord("Введите должность по которой фильтровать сотрудников: ");
 
 
     // перебор всего вектора company и добавление отфильтрованных сотрудников в filtred
